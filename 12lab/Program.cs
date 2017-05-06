@@ -7,6 +7,8 @@ namespace _12lab
 {
     class Program
     {
+        static Random rand = new Random();
+
         #region ConsoleWork
 
         static void openCons()
@@ -110,9 +112,7 @@ namespace _12lab
         }
 
         #endregion
-
-        static Random rand = new Random();
-
+        #region задания
         static void Create(Hashtable l)
         {
             l.Clear();
@@ -232,6 +232,7 @@ namespace _12lab
                 }
             }
         }
+        #endregion
 
         static void Main(string[] args)
         {
