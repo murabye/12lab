@@ -139,7 +139,7 @@ namespace _12lab
         static void Add(Hashtable l)
         {
             Verification.Verification cur;
-            switch (rand.Next(0, 2))
+            switch (rand.Next(1, 4))
             {
                 case 1:
                     cur = new Test();
@@ -155,41 +155,46 @@ namespace _12lab
         }
         static void Delete(Hashtable l)
         {
-            foreach (Verification.Verification ver in l)
+            foreach (DictionaryEntry ver in l)
             {
+                Console.WriteLine(ver.Key);
                 Console.WriteLine("Этот удалить? (да)");
-                if (Console.ReadLine() == "да") l.Remove(ver.ToString());
+                if (Console.ReadLine() == "да")
+                {
+                    l.Remove(ver.Key);
+                    return;
+                }
             }
         }
         static void Show(Hashtable l)
         {
-            foreach(Verification.Verification ver in l)
+            foreach(DictionaryEntry ver in l)
             {
-                Console.WriteLine(ver.ToString() + "\n");
+                Console.WriteLine(ver.Value.ToString() + "\n");
             }
         }
         static void Count(Hashtable l)
         {
             int count = 0;
-            foreach (Test t in l)
+            foreach (DictionaryEntry t in l)
             {
-                count++;
+                if (t.Value is Test) count++;
             }
             Console.WriteLine("Тестов: " + count);
         }
         static void ShowFinal(Hashtable l)
         {
-            foreach (FinalExam f in l)
+            foreach (DictionaryEntry f in l)
             {
-                Console.WriteLine(f.ToString());
+                if (f.Value is FinalExam) Console.WriteLine(f.Key);
             }
         }
         static void HashCods(Hashtable l)
         {
-            foreach (Exam e in l)
+            foreach (DictionaryEntry e in l)
             {
-                Console.WriteLine("Хеш-код: " + (e.ToString()).GetHashCode() + "\nВыражение: ");
-                Console.WriteLine(e.ToString());
+                Console.WriteLine("Хеш-код: " + e.Key.GetHashCode() + "\nВыражение: ");
+                Console.WriteLine(e.Key);
             }
         }
         static Hashtable Clone(Hashtable l) {
@@ -197,32 +202,32 @@ namespace _12lab
             Show(clone);
             return clone;
         }
-        static void Sort(Hashtable l) {
-            Array arr = null;
-            int ind = 0;
-            foreach (Verification.Verification ver in l)
-            {
-                l.CopyTo(arr, ind);
-                ind++;
-            }
-            Array.Sort(arr);
-            Console.WriteLine("Попытка первая, через отправление все в array");
-            foreach (Verification.Verification ver in arr)
-                Console.WriteLine(ver.ToString());
+        static Array Sort(Hashtable l) {
+            Array arr = new Verification.Verification[l.Count];
+            l.Values.CopyTo(arr, 0);
 
-            Console.WriteLine("Попытка 2: ");
-            Hashtable h = Clone(l);
-            Array.Sort((Array)(h.Keys), (Array)(h.Values));
-            Show(h);
+            Array.Sort(arr);
+            
+            foreach(Verification.Verification v in arr)
+            {
+                Console.WriteLine(v.ToString());
+            }
+            return arr;
         }
         static void Search(Hashtable l) {
-            foreach (Verification.Verification ver in l)
+            Verification.Verification v = new Test();
+            Array arr = new Verification.Verification[l.Count];
+            l.Values.CopyTo(arr, 0);
+            Array.Sort(arr);
+
+            foreach (DictionaryEntry ver in l)
             {
+                Console.WriteLine(ver.Key);
                 Console.WriteLine("Этот поискать? (да)");
                 if (Console.ReadLine() == "да")
                 {
-
-
+                    int n = Array.BinarySearch(arr, ver.Value);
+                    Console.WriteLine("Номер: " + n);
                     return;
                 }
             }
@@ -280,11 +285,11 @@ namespace _12lab
                         Search(list);
                         break;
                 }
-
+                openCons();
                 choise = ShowMenu("Введите, что бы вы хотели сделать",
                     "Создать коллекцию", "Добавить элемент", "Удалить элемент",
-                    "Напечатать foreach", "Сколько тестов", "Все финальные экзамены", "Хеш-коды экзов",
-                    "Клонирование", "Сортировка по дате");
+                    "Напечатать foreach", "Сколько тестов", "Все финальные экзамены", "Хеш-коды",
+                    "Клонирование", "Сортировка", "Поиск");
             }
         }
     }
