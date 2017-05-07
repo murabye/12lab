@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
 using Verification;
 
@@ -11,7 +10,7 @@ namespace _12lab
 
         #region ConsoleWork
 
-        static void openCons()
+        static void OpenCons()
         {
             Console.CursorLeft = 1;
             Console.CursorTop += 2;
@@ -101,15 +100,6 @@ namespace _12lab
 
             return n;
         }
-        static int AskNum(string description, int num)
-        {
-            Console.WriteLine(description);
-            int n;
-            while (!(int.TryParse(Console.ReadLine(), out n)) || !(n > 0) || !(n < num))
-                Console.WriteLine("Неверный ввод. ");
-
-            return n;
-        }
 
         #endregion
         #region задания
@@ -170,7 +160,7 @@ namespace _12lab
         {
             foreach(DictionaryEntry ver in l)
             {
-                Console.WriteLine(ver.Value.ToString() + "\n");
+                Console.WriteLine(ver.Key + "\n");
             }
         }
         static void Count(Hashtable l)
@@ -197,25 +187,20 @@ namespace _12lab
                 Console.WriteLine(e.Key);
             }
         }
-        static Hashtable Clone(Hashtable l) {
+        static void Clone(Hashtable l) {
             Hashtable clone = (Hashtable)l.Clone();
             Show(clone);
-            return clone;
         }
-        static Array Sort(Hashtable l) {
+        static void Sort(Hashtable l) {
             Array arr = new Verification.Verification[l.Count];
             l.Values.CopyTo(arr, 0);
 
             Array.Sort(arr);
             
             foreach(Verification.Verification v in arr)
-            {
                 Console.WriteLine(v.ToString());
-            }
-            return arr;
         }
         static void Search(Hashtable l) {
-            Verification.Verification v = new Test();
             Array arr = new Verification.Verification[l.Count];
             l.Values.CopyTo(arr, 0);
             Array.Sort(arr);
@@ -234,7 +219,7 @@ namespace _12lab
         }
         #endregion
 
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine(" Кузнецовой Влады. В мире Варьки\n" +
                 " Лабораторная работа №12 (старая нумерация 11)\n" +
@@ -245,9 +230,10 @@ namespace _12lab
                 " 3. запросы кол-ва эл-ов опр-ого вида, печать опр-ого вида, еще что-то (3 запроса)\n" +
                 " 4. перебор через foreach\n" +
                 " 5. клонирование коллекции\n" +
-                " 6. сортировку коллекции и поиск элемента"
+                " 6. сортировку коллекции и поиск элемента" +
+                " Вариант 5, HashTable"
                 );
-            openCons();
+            OpenCons();
 
             Hashtable list = new Hashtable();
             int choise = 1;
@@ -286,7 +272,7 @@ namespace _12lab
                         Search(list);
                         break;
                 }
-                openCons();
+                OpenCons();
                 choise = ShowMenu("Введите, что бы вы хотели сделать",
                     "Создать коллекцию", "Добавить элемент", "Удалить элемент",
                     "Напечатать foreach", "Сколько тестов", "Все финальные экзамены", "Хеш-коды",
