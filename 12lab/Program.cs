@@ -2,7 +2,7 @@
 using System.Collections;
 using Verification;
 
-namespace _12lab
+namespace _1task
 {
     class Program
     {

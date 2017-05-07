@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12lab", "12lab\12lab.csproj", "{9628F584-8F44-45EE-9A5E-A2776D8B1CE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1task", "12lab\1task.csproj", "{9628F584-8F44-45EE-9A5E-A2776D8B1CE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2task", "2task\2task.csproj", "{21C4C27C-BEE5-47AF-96DA-8C7D9CAE118A}"
 EndProject
