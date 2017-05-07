@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Verification;
 
@@ -7,7 +6,6 @@ namespace _2task
 {
     class Program
     {
-
         static Random rand = new Random();
 
         #region ConsoleWork
@@ -160,7 +158,7 @@ namespace _2task
             int count = 0;
             Array arr = l.ToArray();
 
-            foreach (Verification.Verification t in l)
+            foreach (Verification.Verification t in arr)
                 if (t is Test) count++;
             Console.WriteLine("Тестов: " + count);
         }
@@ -168,7 +166,7 @@ namespace _2task
         {
             Array arr = l.ToArray();
 
-            foreach (Verification.Verification f in l)
+            foreach (Verification.Verification f in arr)
             {
                 if (f is FinalExam) Console.WriteLine(f);
             }
@@ -177,7 +175,7 @@ namespace _2task
         {
             Array arr = l.ToArray();
 
-            foreach (Verification.Verification e in l)
+            foreach (Verification.Verification e in arr)
             {
                 Console.WriteLine("Хеш-код: " + e.ToString().GetHashCode() + "\nВыражение: ");
                 Console.WriteLine(e);
@@ -186,7 +184,7 @@ namespace _2task
         static void Clone(Queue<Verification.Verification> l)
         {
             Array arr = l.ToArray();
-            Queue<Verification.Verification> clone = null;
+            Queue<Verification.Verification> clone = new Queue<Verification.Verification>();
             foreach (Verification.Verification ver in arr)
             {
                 clone.Enqueue(ver);
@@ -234,7 +232,7 @@ namespace _2task
                               " 4. перебор через foreach\n" +
                               " 5. клонирование коллекции\n" +
                               " 6. сортировку коллекции и поиск элемента" +
-                              " Вариант 5, HashTable"
+                              " Вариант 5, Queoe"
             );
             OpenCons();
 
